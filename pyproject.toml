@@ -6,6 +6,7 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "cellpose>=4.2.1.1",
+    "cropper",
     "jupyterlab>=4.6.3",
     "kaleido>=1.4.0",
     "napari-animation>=0.0.10",
@@ -25,7 +26,6 @@ dependencies = [
 ]
 
 [tool.uv.sources]
-napari-nikon-nd2 = { git = "https://github.com/cwood1967/napari-nikon-nd2.git" }
 napari-vsi = { git = "https://github.com/cwood1967/napari-vsi.git" }
 torch = [
     { index = "pytorch-cu130", marker = "sys_platform == 'win32'" },
@@ -33,6 +33,7 @@ torch = [
 torchvision = [
     { index = "pytorch-cu130", marker = "sys_platform == 'win32'" },
 ]
+cropper = { git = "https://github.com/cwood1967/napari-cropper.git" }
 
 [[tool.uv.index]]
 name = "pytorch-cu130"
