@@ -1,0 +1,26 @@
+[project]
+name = "uv-env"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "jupyterlab>=4.6.3",
+    "kaleido>=1.4.0",
+    "napari-animation>=0.0.10",
+    "napari-czitools>=0.12.4",
+    "napari-nikon-nd2",
+    "napari-tiff>=0.1.6",
+    "napari-vsi",
+    "napari[all]>=0.9.0",
+    "pandas>=3.0.5",
+    "plotly>=7.0.0",
+    "scikit-learn>=1.9.0",
+    "scipy>=1.18.1",
+    "seaborn>=0.13.2",
+    "slideio>=2.9.0",
+]
+
+[tool.uv.sources]
+napari-nikon-nd2 = { git = "https://github.com/cwood1967/napari-nikon-nd2.git" }
+napari-vsi = { git = "https://github.com/cwood1967/napari-vsi.git" }
