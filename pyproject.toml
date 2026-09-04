@@ -8,6 +8,7 @@ dependencies = [
     "av>=18.1.0",
     "cellpose>=4.2.1.1",
     "cropper",
+    "dinov3",
     "jupyterlab>=4.6.3",
     "kaleido>=1.4.0",
     "napari-animation>=0.0.10",
@@ -62,6 +63,7 @@ torchvision = [
     { index = "pytorch-cpu", extra = "cpu", marker = "sys_platform != 'darwin'" },
     { index = "pytorch-cu130", extra = "cu130" },
 ]
+dinov3 = { git = "https://github.com/facebookresearch/dinov3" }
 
 [[tool.uv.index]]
 name = "pytorch-cpu"
