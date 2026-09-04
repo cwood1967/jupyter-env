@@ -1,10 +1,11 @@
 [project]
-name = "uv-env"
+name = "jupyter-env"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    "av>=18.1.0",
     "cellpose>=4.2.1.1",
     "cropper",
     "jupyterlab>=4.6.3",
@@ -21,8 +22,11 @@ dependencies = [
     "scipy>=1.18.1",
     "seaborn>=0.13.2",
     "slideio>=2.9.0",
+    "statsmodels>=0.15.0",
     "torch>=2.12.0",
     "torchvision>=0.27.0",
+    "trackpy>=0.7",
+    "umap-learn>=0.5.12",
 ]
 
 [tool.uv.sources]
