@@ -23,21 +23,49 @@ dependencies = [
     "seaborn>=0.13.2",
     "slideio>=2.9.0",
     "statsmodels>=0.15.0",
-    "torch>=2.12.0",
-    "torchvision>=0.27.0",
     "trackpy>=0.7",
     "umap-learn>=0.5.12",
 ]
 
+# torch/torchvision live in extras rather than base deps so a launcher can pick
+# the build: `uv sync --extra cpu` or `uv sync --extra cu130`. Selecting neither
+# resolves torch from PyPI (cellpose pulls it in transitively regardless).
+[project.optional-dependencies]
+cpu = [
+    "torch>=2.12.0",
+    "torchvision>=0.27.0",
+]
+cu130 = [
+    "torch>=2.12.0",
+    "torchvision>=0.27.0",
+]
+
+[tool.uv]
+# These extras can never be installed together. Declaring the conflict lets uv
+# lock a separate resolution for each instead of erroring on the two torch
+# indexes, so one uv.lock serves both the CPU and CUDA launchers.
+conflicts = [
+    [{ extra = "cpu" }, { extra = "cu130" }],
+]
+
 [tool.uv.sources]
 napari-vsi = { git = "https://github.com/cwood1967/napari-vsi.git" }
+cropper = { git = "https://github.com/cwood1967/napari-cropper.git" }
+# The pytorch cpu index has no macOS wheels; let Darwin fall through to PyPI,
+# which already ships the correct arm64 (MPS-enabled) build.
 torch = [
-    { index = "pytorch-cu130", marker = "sys_platform == 'win32'" },
+    { index = "pytorch-cpu", extra = "cpu", marker = "sys_platform != 'darwin'" },
+    { index = "pytorch-cu130", extra = "cu130" },
 ]
 torchvision = [
-    { index = "pytorch-cu130", marker = "sys_platform == 'win32'" },
+    { index = "pytorch-cpu", extra = "cpu", marker = "sys_platform != 'darwin'" },
+    { index = "pytorch-cu130", extra = "cu130" },
 ]
-cropper = { git = "https://github.com/cwood1967/napari-cropper.git" }
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
 
 [[tool.uv.index]]
 name = "pytorch-cu130"
