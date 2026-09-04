@@ -23,6 +23,7 @@ dependencies = [
     "seaborn>=0.13.2",
     "slideio>=2.9.0",
     "statsmodels>=0.15.0",
+    "sympy>=1.14.0",
     "trackpy>=0.7",
     "umap-learn>=0.5.12",
 ]
