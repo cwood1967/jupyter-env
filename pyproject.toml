@@ -29,6 +29,7 @@ dependencies = [
     "sympy>=1.14.0",
     "trackpy>=0.7",
     "umap-learn>=0.5.12",
+    "video-array",
 ]
 
 # torch/torchvision live in extras rather than base deps so a launcher can pick
@@ -66,6 +67,7 @@ torchvision = [
     { index = "pytorch-cu130", extra = "cu130" },
 ]
 dinov3 = { git = "https://github.com/facebookresearch/dinov3" }
+video-array = { git = "https://github.com/cwood1967/video_array.git" }
 
 [[tool.uv.index]]
 name = "pytorch-cpu"
